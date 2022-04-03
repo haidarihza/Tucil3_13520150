@@ -12,6 +12,7 @@ import java.awt.TextArea;
 import java.util.ArrayList;
 
 import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class Result extends JFrame {
 	//Result GUI
@@ -45,20 +46,23 @@ public class Result extends JFrame {
 		panel_1.setBounds(10, 327, 255, 241);
 		contentPane.add(panel_1);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(275, 10, 481, 558);
+		contentPane.add(scrollPane);
+		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(275, 10, 481, 558);
-		contentPane.add(textArea);
+		scrollPane.setViewportView(textArea);
+		textArea.append("Result: \n");
+		textArea.append("Nilai Sigma Kurang+X : " + puzzle.get_kurangX() + "\n");
 		
 		JLabel lblNewLabel_1 = new JLabel("* Klik puzzle untuk melihat pergerakannya");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
 		lblNewLabel_1.setBounds(10, 570, 245, 13);
 		contentPane.add(lblNewLabel_1);
-		textArea.append("Result: \n");
 		int[] kurang = puzzle.get_kurang();
 		for (int i = 0; i < 16; i++) {
 			textArea.append("Kurang(" + (i+1) + ") : " + kurang[i] + "\n");
 		}
-		textArea.append("Nilai Sigma Kurang+X : " + puzzle.get_kurangX() + "\n");
 		if (puzzle.isSolvable()) {
 			//berhasil diselesaikan
 			textArea.append("Waktu eksekusi: " + puzzle.get_time_process() + " ms\n");

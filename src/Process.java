@@ -125,7 +125,7 @@ public class Process {
 		int count = 0;
 		long start_time = System.nanoTime();
 		if (!this.isSolvable()) {
-			//do nothing
+			this.mat_end = new Matrix(this.mat_start);
 		}
 		else {
 	        MyPriorityQueue pq = new MyPriorityQueue();
